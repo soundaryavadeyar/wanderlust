@@ -1,0 +1,146 @@
+<%- layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <h3>Create a New Listing</h3>
+
+    <form 
+      method="POST" 
+      action="/listings" 
+      enctype="multipart/form-data" 
+      novalidate 
+      class="needs-validation"
+    >
+      <!-- Title -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          id="title"
+          name="listing[title]"
+          placeholder="Add a catchy title"
+          type="text"
+          class="form-control"
+          required
+          autofocus
+        />
+        <div class="invalid-feedback">
+          Please provide a valid title.
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          name="listing[description]"
+          class="form-control"
+          placeholder="Describe your listing..."
+          required
+        ></textarea>
+        <div class="invalid-feedback">
+          Please provide a valid description.
+        </div>
+      </div>
+
+      <!-- Image Upload -->
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload Listing Image</label>
+        <input
+          id="image"
+          name="listing[image]"
+          type="file"
+          class="form-control"
+        />
+      </div>
+
+      <!-- Category (optional) -->
+      <div class="mb-3">
+        <label for="category" class="form-label">Category (optional)</label>
+        <select id="category" name="listing[category]" class="form-select">
+          <option value="">Auto-assign</option>
+          <option value="Trending">Trending</option>
+          <option value="Rooms">Rooms</option>
+          <option value="Mountains">Mountains</option>
+          <option value="Castles">Castles</option>
+          <option value="Pools">Amazing Pools</option>
+          <option value="Camping">Camping</option>
+          <option value="Farms">Farms</option>
+          <option value="Arctic">Arctic</option>
+          <option value="Domes">Domes</option>
+          <option value="Boats">Boats</option>
+        </select>
+      </div>
+
+      <!-- Price & Country -->
+      <div class="row">
+        <div class="mb-3 col-4">
+          <label for="price" class="form-label">Price</label>
+          <input
+            id="price"
+            name="listing[price]"
+            type="number"
+            placeholder="1200"
+            min="0"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">
+            Please provide a valid price.
+          </div>
+        </div>
+
+        <div class="mb-3 col-3">
+          <label for="country" class="form-label">Country</label>
+          <input
+            id="country"
+            name="listing[country]"
+            type="text"
+            placeholder="India"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">
+            Please provide a valid country.
+          </div>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input
+          id="location"
+          name="listing[location]"
+          type="text"
+          placeholder="Jaipur, Rajasthan"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">
+          Please provide a valid location.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button class="btn btn-dark add-btn mt-3">Add Listing</button>
+    </form>
+  </div>
+</div>
+
+<!-- Bootstrap Form Validation JS -->
+<script>
+(() => {
+  'use strict';
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    });
+  });
+})();
+</script>
