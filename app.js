@@ -48,7 +48,6 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 const store = MongoStore.create({
   mongoUrl: process.env.ATLASDB_URL,
-  crypto: {secret: process.env.SECRET},
   touchAfter: 24 * 3600,
 });
 
@@ -113,6 +112,8 @@ res.status(statusCode).render("error.ejs", { message });
 });
 
 //  SERVER START
-app.listen(8080, () => {
-  console.log(" Server is running on port 8080");
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
